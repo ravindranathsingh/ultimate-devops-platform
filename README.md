@@ -364,3 +364,31 @@ Quality Gate
      ↓
 Container Build
 ```
+
+## GitOps Platform
+
+Tool:
+ArgoCD
+
+Purpose:
+- GitOps Deployments
+- Desired State Reconciliation
+- Automated Synchronization
+- Kubernetes Application Lifecycle Management
+
+Deployment Strategy:
+```text
+Git Push
+    ↓
+Git Repository
+    ↓
+ArgoCD
+    ↓
+Kubernetes Cluster
+```
+CI Responsibility:
+GitHub Actions + Jenkins
+
+CD Responsibility:
+ArgoCD
+
