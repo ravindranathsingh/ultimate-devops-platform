@@ -2,9 +2,8 @@
 
 ## Project Architecture
 
-Document:
-
 This repository demonstrates a complete DevOps ecosystem from source code to production deployment.
+
 Infrastructure:
 Vagrant Lab
 Kubernetes Cluster
@@ -16,8 +15,9 @@ Ansible
 Prometheus
 Grafana
 Loki
-Deployment Flow:
 
+Deployment Flow:
+```text
 Developer
    ↓
 GitHub
@@ -35,7 +35,7 @@ GHCR
 ArgoCD
    ↓
 Kubernetes
-
+```
 Lab Nodes:
 master  : 192.168.56.10
 worker  : 192.168.56.11
@@ -125,27 +125,28 @@ architecture diagram:
 ```
 
 ## We will build:
-```text
-### Component		Technology
-Frontend		React
-Backend			Node.js + Express
-Database		PostgreSQL
-Container Runtime	Docker
-Orchestration		Kubernetes
-Packaging		Helm
-CI			GitHub Actions
-Enterprise CI		Jenkins
-GitOps			ArgoCD
-Quality			SonarQube
-Security		Trivy
-Registry		GHCR
-IaC			Terraform
-Configuration		Ansible
-Monitoring		Prometheus
-Dashboards		Grafana
-Logging			Loki
-Ingress			NGINX Ingress
-```
+
+
+| Component | Technology |
+| :--- | :--- |
+| **Frontend** | React |
+| **Backend** | Node.js + Express |
+| **Database** | PostgreSQL |
+| **Container Runtime** | Docker |
+| **Orchestration** | Kubernetes |
+| **Packaging** | Helm |
+| **CI** | GitHub Actions |
+| **Enterprise CI** | Jenkins |
+| **GitOps** | ArgoCD |
+| **Quality** | SonarQube |
+| **Security** | Trivy |
+| **Registry** | GHCR |
+| **IaC** | Terraform |
+| **Configuration** | Ansible |
+| **Monitoring** | Prometheus |
+| **Dashboards** | Grafana |
+| **Logging** | Loki |
+| **Ingress** | NGINX Ingress |
 
 ## Kubernetes Lab Environment
 Cluster Type: kubeadm
@@ -252,3 +253,25 @@ NGINX Ingress
 Frontend Service
   ↓
 Backend Service
+
+## Traditional CI/CD Platform
+
+CI Engine:
+Jenkins
+
+Architecture:
+- Jenkins Controller
+- Jenkins Agents
+- Shared Libraries
+- Declarative Pipelines
+
+Responsibilities:
+- Build
+- Test
+- SonarQube Analysis
+- Container Build
+- Trivy Scan
+- Push to GHCR
+
+Deployment Method:
+Helm Chart
