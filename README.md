@@ -202,3 +202,19 @@ containerd
 
 Cluster Build Method:
 kubeadm + containerd + Calico
+
+## Kubernetes Cluster Topology
+Control Plane:
+- master (192.168.56.10)
+
+Worker Nodes:
+- worker (192.168.56.11)
+
+Pod CIDR:
+- 192.168.0.0/16
+
+CNI:
+- Calico
+
+Cluster Bootstrap:
+kubeadm init
