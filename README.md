@@ -275,3 +275,20 @@ Responsibilities:
 
 Deployment Method:
 Helm Chart
+
+## Jenkins Deployment
+
+Deployment Target:
+Kubernetes
+
+Namespace:
+jenkins
+
+Package Manager:
+Helm
+
+Persistence:
+Persistent Volume
+
+Agent Strategy:
+Kubernetes Dynamic Agents
