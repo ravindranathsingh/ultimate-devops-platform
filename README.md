@@ -245,7 +245,7 @@ Responsibilities:
 - SSL termination
 
 Traffic Flow:
-
+```text
 User
   ↓
 NGINX Ingress
@@ -253,7 +253,7 @@ NGINX Ingress
 Frontend Service
   ↓
 Backend Service
-
+```
 ## Traditional CI/CD Platform
 
 CI Engine:
@@ -292,3 +292,28 @@ Persistent Volume
 
 Agent Strategy:
 Kubernetes Dynamic Agents
+
+## Code Quality Platform
+
+Tool:
+SonarQube
+
+Purpose:
+- Static Code Analysis
+- Code Smell Detection
+- Security Hotspot Detection
+- Technical Debt Tracking
+- Quality Gates
+
+Pipeline Position:
+```text
+GitHub Actions
+      ↓
+Jenkins
+      ↓
+SonarQube
+      ↓
+Trivy
+      ↓
+GHCR
+```
