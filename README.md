@@ -317,3 +317,21 @@ Trivy
       ↓
 GHCR
 ```
+
+## SonarQube Database
+
+Database:
+PostgreSQL
+
+Purpose:
+- Store projects
+- Store analysis history
+- Store quality gates
+- Store users and permissions
+
+Architecture:
+```text
+SonarQube
+     ↓
+PostgreSQL
+```
