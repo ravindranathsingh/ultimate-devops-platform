@@ -335,3 +335,32 @@ SonarQube
      ↓
 PostgreSQL
 ```
+
+## SonarQube Deployment
+
+Namespace:
+sonarqube
+
+Database:
+PostgreSQL
+
+Deployment Method:
+Helm
+
+Persistence:
+Enabled
+
+Quality Gate Flow:
+```text
+Source Code
+     ↓
+GitHub Actions
+     ↓
+Jenkins
+     ↓
+SonarQube Analysis
+     ↓
+Quality Gate
+     ↓
+Container Build
+```

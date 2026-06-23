@@ -1,0 +1,11 @@
+postgresql:
+  enabled: false
+
+jdbcOverwrite:
+  enable: true
+  jdbcUrl: jdbc:postgresql://sonar-postgres-postgresql.sonarqube.svc.cluster.local:5432/sonarqube
+  jdbcUsername: sonar
+  jdbcPassword: sonarpass
+
+persistence:
+  enabled: true
