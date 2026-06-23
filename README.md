@@ -185,3 +185,20 @@ Bootstrap Order
 
 Kubernetes Version Target:
 v1.30.x
+
+## Kubernetes Components
+kubeadm
+- Cluster bootstrap tool
+
+kubelet
+- Node agent
+- Manages pod lifecycle
+
+kubectl
+- Kubernetes CLI
+
+containerd
+- Container Runtime Interface (CRI)
+
+Cluster Build Method:
+kubeadm + containerd + Calico
