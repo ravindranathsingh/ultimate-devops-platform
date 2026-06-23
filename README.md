@@ -171,4 +171,17 @@ CNI:
 Purpose:
 This Kubernetes cluster hosts the complete DevOps platform including Jenkins, SonarQube, ArgoCD, Prometheus, Grafana, Loki, NGINX Ingress, and the application microservices.
 
+## Kubernetes Bootstrap Process
+Bootstrap Order
 
+1. OS Preparation
+2. Container Runtime (containerd)
+3. Kubernetes Packages
+4. kubeadm Init
+5. Worker Join
+6. Calico CNI
+7. NGINX Ingress
+8. Platform Services
+
+Kubernetes Version Target:
+v1.30.x
