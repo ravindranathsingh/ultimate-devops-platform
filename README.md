@@ -218,3 +218,16 @@ CNI:
 
 Cluster Bootstrap:
 kubeadm init
+
+## Kubernetes Networking
+Network Plugin:
+Calico
+
+Features:
+- Pod networking
+- Network policies
+- Scalable routing
+- Production-grade Kubernetes networking
+
+Pod CIDR:
+192.168.0.0/16
