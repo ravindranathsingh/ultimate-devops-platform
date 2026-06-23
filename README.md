@@ -392,3 +392,30 @@ GitHub Actions + Jenkins
 CD Responsibility:
 ArgoCD
 
+## Microservices Architecture
+
+```text
+Frontend
+  ↓
+Backend API
+  ↓
+PostgreSQL
+```
+Deployment Model:
+
+Frontend    → Kubernetes Deployment
+Backend     → Kubernetes Deployment
+PostgreSQL  → StatefulSet
+
+Exposure:
+```text
+Internet
+   ↓
+NGINX Ingress
+   ↓
+Frontend
+   ↓
+Backend API
+```
+
+
