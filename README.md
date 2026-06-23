@@ -231,3 +231,24 @@ Features:
 
 Pod CIDR:
 192.168.0.0/16
+
+## Ingress Layer
+Ingress Controller:
+NGINX Ingress Controller
+
+Responsibilities:
+- External traffic entry point
+- HTTP/HTTPS routing
+- Path-based routing
+- Host-based routing
+- SSL termination
+
+Traffic Flow:
+
+User
+  ↓
+NGINX Ingress
+  ↓
+Frontend Service
+  ↓
+Backend Service
