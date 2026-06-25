@@ -473,3 +473,21 @@ Frontend Features:
 - Displays Backend Status
 - Displays Backend Version
 - Kubernetes Ready
+
+## Backend Kubernetes Deployment
+
+Workload Type:
+Deployment
+
+Replicas:
+1
+
+Container Port:
+3000
+
+Health Checks:
+Liveness Probe
+Readiness Probe
+
+Service Type:
+ClusterIP
