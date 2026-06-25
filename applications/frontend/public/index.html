@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Engineer Portfolio</title>
+    <style>
+        /* CSS STYLES */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px 40px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--card-bg);
+            padding-bottom: 10px;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .skill-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: #334155;
+            color: var(--accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin: 4px 2px;
+        }
+
+        /* Filter Controls */
+        .filter-buttons {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--text-muted);
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent);
+            color: var(--bg-color);
+            border-color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card.hidden {
+            display: none;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        /* Contact Section */
+        .contact-list {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-list a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Hi, I'm <span>Alex</span></h1>
+        <p class="subtitle">DevOps & Infrastructure Engineer</p>
+        <p>Building automated, scalable, and highly available deployment pipelines.</p>
+    </header>
+
+    <main>
+        <!-- SKILLS SECTION -->
+        <section id="skills">
+            <h2>🛠️ Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Containers & Orchestration</h3>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Kubernetes</span>
+                </div>
+                <div class="skill-card">
+                    <h3>CI/CD Pipelines</h3>
+                    <span class="skill-tag">GitHub Actions</span>
+                    <span class="skill-tag">Jenkins</span>
+                </div>
+                <div class="skill-card">
+                    <h3>Infrastructure as Code</h3>
+                    <span class="skill-tag">Terraform</span>
+                    <span class="skill-tag">Ansible</span>
+                </div>
+                <div class="skill-card">
+                    <h3>Cloud Platforms</h3>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Linux (Ubuntu/Alpine)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects">
+            <h2>📂 Engineering Projects</h2>
+            
+            <!-- JavaScript Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ci-cd">CI/CD</button>
+                <button class="filter-btn" data-filter="iac">IaC</button>
+                <button class="filter-btn" data-filter="cloud">Cloud</button>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card" data-category="ci-cd">
+                    <div>
+                        <div class="project-title">Multi-Stage Node.js Pipeline</div>
+                        <div class="project-desc">Built a secure GitHub Actions workflow compiling an application inside a node:22-alpine container, reducing footprint by 80%.</div>
+                    </div>
+                    <div>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" data-category="iac">
+                    <div>
+                        <div class="project-title">Automated Vagrant Cluster</div>
+                        <div class="project-desc">Configured a multi-node local development environment using Vagrant and VirtualBox with automated network routing.</div>
+                    </div>
+                    <div>
+                        <span class="skill-tag">Vagrant</span>
+                        <span class="skill-tag">Ansible</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" data-category="cloud">
+                    <div>
+                        <div class="project-title">Highly Available AWS Stack</div>
+                        <div class="project-desc">Provisioned global infrastructure including VPCs, Load Balancers, and EC2 Auto-scaling groups via code.</div>
+                    </div>
+                    <div>
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">AWS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact">
+            <h2>📨 Get In Touch</h2>
+            <ul class="contact-list">
+                <li>Email: <a href="mailto:alex.devops@example.com">alex.devops@example.com</a></li>
+                <li>GitHub: <a href="https://github.com" target="_blank">://github.com</a></li>
+                <li>LinkedIn: <a href="https://linkedin.com" target="_blank">://linkedin.com</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active class on buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    // Filter logic
+                    const filterValue = button.getAttribute('data-filter');
+
+                    projectCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+                        
+                        if (filterValue === 'all' || cardCategory === filterValue) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

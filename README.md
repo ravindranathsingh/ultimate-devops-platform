@@ -451,3 +451,19 @@ GHCR (later)
 
 Security:
 Minimal Attack Surface
+
+## Frontend Service
+ 
+Frontend Technology:
+React
+
+Purpose:
+- User Interface
+- API Consumption
+- Health Status Display
+
+Deployment:
+Kubernetes
+
+Containerization:
+Docker
