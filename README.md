@@ -435,4 +435,19 @@ Docker
 Deployment:
 Kubernetes
 
+## Backend Containerization
 
+Build Tool:
+Docker
+
+Image Strategy:
+Multi-Stage Build
+
+Runtime:
+Non-Root User
+
+Registry:
+GHCR (later)
+
+Security:
+Minimal Attack Surface
