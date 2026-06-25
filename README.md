@@ -418,4 +418,21 @@ Frontend
 Backend API
 ```
 
+## Backend Service
+
+Technology:
+Node.js
+
+Purpose:
+- REST API
+- Health Endpoint
+- Version Endpoint
+- Future Database Connectivity
+
+Containerization:
+Docker
+
+Deployment:
+Kubernetes
+
 
