@@ -467,3 +467,9 @@ Kubernetes
 
 Containerization:
 Docker
+
+Frontend Features:
+- Calls Backend API
+- Displays Backend Status
+- Displays Backend Version
+- Kubernetes Ready
