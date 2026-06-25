@@ -491,3 +491,20 @@ Readiness Probe
 
 Service Type:
 ClusterIP
+
+## Frontend Containerization
+
+Build Tool:
+Docker
+
+Runtime:
+NGINX
+
+Container Port:
+80
+
+Purpose:
+Serve Static UI
+
+Security:
+Minimal Runtime Image
