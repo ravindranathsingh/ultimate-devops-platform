@@ -39,3 +39,15 @@ jobs:
         run: |
           helm lint helm/frontend
           helm template frontend helm/frontend > /dev/null
+
+      - name: Build Backend Docker Image
+        run: |
+          docker build \
+            -t backend:ci \
+            applications/backend
+
+      - name: Build Frontend Docker Image
+        run: |
+          docker build \
+            -t frontend:ci \
+            applications/frontend

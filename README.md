@@ -623,3 +623,16 @@ Current Stages:
 
 Purpose:
 Perform automatic validation before code is merged.
+
+## Docker Build Validation
+
+Pipeline Stage:
+Docker Image Build
+
+Images:
+- Backend
+- Frontend
+
+Purpose:
+Verify that both Dockerfiles can successfully build on every push before the code reaches the deployment pipeline.
+
