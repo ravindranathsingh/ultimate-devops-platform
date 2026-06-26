@@ -402,11 +402,11 @@ Backend API
 PostgreSQL
 ```
 Deployment Model:
-
+```text
 Frontend    → Kubernetes Deployment
 Backend     → Kubernetes Deployment
 PostgreSQL  → StatefulSet
-
+```
 Exposure:
 ```text
 Internet
@@ -508,3 +508,21 @@ Serve Static UI
 
 Security:
 Minimal Runtime Image
+
+## Frontend Kubernetes Deployment
+
+Workload Type:
+Deployment
+
+Replicas:
+1
+
+Container Runtime:
+NGINX
+
+Service Type:
+ClusterIP
+
+Frontend → Backend Communication:
+Internal Kubernetes Service
+
