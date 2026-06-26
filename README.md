@@ -574,3 +574,19 @@ Helm charts are written manually instead of using the default `helm create`
 template. This keeps the deployment manifests minimal, readable, and tailored
 to the application's requirements.
 
+## Helm Templates
+
+Templates Created:
+- Deployment
+- Service
+
+Templated Values:
+- Image
+- Replica Count
+- Service Port
+- Resource Limits
+
+Purpose:
+Allow the same chart to be reused across different environments by changing only values.yaml.
+
+
