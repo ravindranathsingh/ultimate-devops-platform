@@ -607,4 +607,19 @@ Templated Values:
 Purpose:
 Deploy the frontend using reusable Helm templates with configurable values.
 
+## GitHub Actions CI
 
+Workflow:
+Continuous Integration
+
+Triggers:
+- Push to main
+- Pull Request to main
+
+Current Stages:
+- Checkout
+- Verify Repository
+- Validate Helm Charts
+
+Purpose:
+Perform automatic validation before code is merged.

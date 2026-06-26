@@ -1,0 +1,41 @@
+name: DevOps CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify Repository Structure
+        run: |
+          echo "Checking repository..."
+          test -d applications
+          test -d kubernetes
+          test -d helm
+          echo "Repository structure verified."
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+
+      - name: Validate Backend Helm Chart
+        run: |
+          helm lint helm/backend
+          helm template backend helm/backend > /dev/null
+
+      - name: Validate Frontend Helm Chart
+        run: |
+          helm lint helm/frontend
+          helm template frontend helm/frontend > /dev/null
