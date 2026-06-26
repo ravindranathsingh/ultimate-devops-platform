@@ -15,13 +15,13 @@
   <script>
     async function loadData() {
       try {
-        const health = await fetch('http://192.168.56.10:3000/health');
+        const health = await fetch('/api/health');
         const healthData = await health.json();
 
         document.getElementById('health').innerText =
           healthData.status;
 
-        const version = await fetch('http://192.168.56.10:3000/version');
+        const version = await fetch('/api/version');
         const versionData = await version.json();
 
         document.getElementById('version').innerText =
