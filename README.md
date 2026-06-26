@@ -553,3 +553,24 @@ Benefits:
 - Reusability
 - Versioning
 - Environment-specific configuration
+
+## Frontend Helm Chart
+
+Package Manager:
+Helm
+
+Purpose:
+Deploy the frontend as a reusable Helm release
+
+Configuration:
+Image
+Replica Count
+Service Type
+Resources
+
+## Custom Helm Charts
+
+Helm charts are written manually instead of using the default `helm create`
+template. This keeps the deployment manifests minimal, readable, and tailored
+to the application's requirements.
+
