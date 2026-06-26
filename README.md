@@ -589,4 +589,22 @@ Templated Values:
 Purpose:
 Allow the same chart to be reused across different environments by changing only values.yaml.
 
+## Frontend Custom Helm Chart
+
+Chart Type:
+Custom Helm Chart
+
+Resources:
+- Deployment
+- Service
+
+Templated Values:
+- Image
+- Replica Count
+- Service Type
+- Service Port
+
+Purpose:
+Deploy the frontend using reusable Helm templates with configurable values.
+
 
