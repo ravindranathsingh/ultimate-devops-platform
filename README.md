@@ -540,3 +540,16 @@ ClusterIP
 
 Reason:
 Internal pod-to-pod communication without exposing backend externally.
+
+## Helm Packaging
+
+Package Manager:
+Helm
+
+Purpose:
+Package Kubernetes manifests into reusable templates
+
+Benefits:
+- Reusability
+- Versioning
+- Environment-specific configuration
