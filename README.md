@@ -665,3 +665,18 @@ Repository Source Code
 
 Purpose:
 Detect vulnerabilities, secrets, and misconfigurations before container image creation.
+
+## Container Image Security
+
+Tool:
+Trivy
+
+Scan Type:
+Container Image Scan
+
+Images:
+- backend
+- frontend
+
+Purpose:
+Identify operating system and package vulnerabilities in Docker images before they are published.

@@ -71,3 +71,17 @@ jobs:
           scan-ref: .
           format: table
           exit-code: '0'
+
+      - name: Scan Backend Image
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: backend:ci
+          format: table
+          exit-code: '0'
+
+      - name: Scan Frontend Image
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: frontend:ci
+          format: table
+          exit-code: '0'
