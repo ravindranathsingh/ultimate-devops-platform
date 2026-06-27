@@ -705,3 +705,36 @@ Current Stages:
 
 Purpose:
 Introduce Jenkins as the enterprise CI engine that will later perform builds, testing, security scans, and deployments.
+
+## Custom Jenkins Agent Image
+
+Base Image:
+Jenkins LTS
+
+Pre-installed Tools:
+- Helm
+- kubectl
+- Docker CLI
+- Trivy
+- Sonar Scanner
+- Git
+
+Purpose:
+Provide a reproducible Jenkins runtime with all required DevOps tooling preinstalled.
+
+## Jenkins Runtime Image
+
+Image:
+ghcr.io/<your-github-username>/jenkins-devops
+
+Current Toolset:
+- Git
+- Docker CLI
+- Helm
+- kubectl
+- Trivy
+
+Purpose:
+Provide a standardized Jenkins runtime for all CI pipelines.
+
+
