@@ -692,3 +692,16 @@ Images:
 
 Purpose:
 Store versioned container images that can be deployed by Kubernetes, Jenkins, and ArgoCD.
+
+## Jenkins CI Pipeline
+
+Pipeline Type:
+Declarative Pipeline
+
+Current Stages:
+- Checkout
+- Verify Repository
+- Validate Helm Charts
+
+Purpose:
+Introduce Jenkins as the enterprise CI engine that will later perform builds, testing, security scans, and deployments.
