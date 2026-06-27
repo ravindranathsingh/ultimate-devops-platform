@@ -69,7 +69,7 @@ jobs:
           projectBaseDir: applications/backend
 
       - name: Install Trivy
-        uses: aquasecurity/trivy-action@v0.28.0
+        uses: aquasecurity/setup-trivy@v0.2.2
         with:
           scan-type: fs
           scan-ref: .
@@ -77,14 +77,14 @@ jobs:
           exit-code: '0'
 
       - name: Scan Backend Image
-        uses: aquasecurity/trivy-action@v0.28.0
+        uses: aquasecurity/setup-trivy@v0.2.2
         with:
           image-ref: backend:ci
           format: table
           exit-code: '0'
 
       - name: Scan Frontend Image
-        uses: aquasecurity/trivy-action@v0.28.0
+        uses: aquasecurity/setup-trivy@v0.2.2
         with:
           image-ref: frontend:ci
           format: table
