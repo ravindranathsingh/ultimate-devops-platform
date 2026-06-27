@@ -651,3 +651,17 @@ Benefits:
 - Detect bugs
 - Detect code smells
 - Measure maintainability
+
+## Security Scanning 
+
+Tool:
+Trivy
+
+Scan Type:
+Filesystem Scan
+
+Current Coverage:
+Repository Source Code
+
+Purpose:
+Detect vulnerabilities, secrets, and misconfigurations before container image creation.
