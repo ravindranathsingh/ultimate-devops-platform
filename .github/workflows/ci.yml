@@ -1,5 +1,8 @@
 name: DevOps CI
 
+env:
+  SONAR_ENABLED: "false"
+
 on:
   push:
     branches:
@@ -51,3 +54,12 @@ jobs:
           docker build \
             -t frontend:ci \
             applications/frontend
+
+      - name: SonarQube Scan
+        if: ${{ env.SONAR_ENABLED == 'true' }}
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          projectBaseDir: applications/backend

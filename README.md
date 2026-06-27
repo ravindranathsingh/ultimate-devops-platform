@@ -636,3 +636,18 @@ Images:
 Purpose:
 Verify that both Dockerfiles can successfully build on every push before the code reaches the deployment pipeline.
 
+## Code Quality Analysis
+
+Tool:
+SonarQube Community Edition
+
+Purpose:
+Static code analysis during Continuous Integration.
+
+Current Scope:
+Backend Source Code
+
+Benefits:
+- Detect bugs
+- Detect code smells
+- Measure maintainability
