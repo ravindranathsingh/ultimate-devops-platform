@@ -1,5 +1,9 @@
 name: DevOps CI
 
+permissions:
+  contents: read
+  packages: write
+
 env:
   SONAR_ENABLED: "false"
 
@@ -85,3 +89,26 @@ jobs:
           image-ref: frontend:ci
           format: table
           exit-code: '0'
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Tag Backend Image
+        run: |
+          docker tag backend:ci ghcr.io/ravindranathsingh/backend:latest
+
+      - name: Push Backend Image
+        run: |
+          docker push ghcr.io/ravindranathsingh/backend:latest
+
+      - name: Tag Frontend Image
+        run: |
+          docker tag frontend:ci ghcr.io/ravindranathsingh/frontend:latest
+
+      - name: Push Frontend Image
+        run: |
+          docker push ghcr.io/ravindranathsingh/frontend:latest

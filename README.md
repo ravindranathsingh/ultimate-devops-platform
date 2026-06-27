@@ -680,3 +680,15 @@ Images:
 
 Purpose:
 Identify operating system and package vulnerabilities in Docker images before they are published.
+
+## Container Registry
+
+Registry:
+GitHub Container Registry (GHCR)
+
+Images:
+- backend
+- frontend
+
+Purpose:
+Store versioned container images that can be deployed by Kubernetes, Jenkins, and ArgoCD.
