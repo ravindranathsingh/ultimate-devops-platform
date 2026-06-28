@@ -835,3 +835,47 @@ NAME       SYNC STATUS   HEALTH STATUS
 backend    Synced        Healthy
 frontend   Synced        Healthy
 ```
+
+## GitOps Deployment
+
+### Argo CD Applications
+
+The project now uses two Argo CD Applications:
+
+- backend
+- frontend
+
+Each application tracks its corresponding Helm chart in the Git repository and automatically synchronizes changes to the Kubernetes cluster.
+
+### Automatic Synchronization
+
+Argo CD is configured with:
+
+- Automated Sync
+- Self-Heal
+- Auto-Prune
+
+This ensures that:
+
+- changes committed by Jenkins are deployed automatically,
+- manual drift in the cluster is corrected,
+- deleted resources are pruned to match the Git repository.
+
+### Deployment Flow
+```text
+Developer Push
+↓
+GitHub Repository
+↓
+Jenkins Pipeline
+↓
+Build & Push Images
+↓
+Update Helm Image Tags
+↓
+Commit Changes
+↓
+Argo CD
+↓
+Kubernetes
+```
