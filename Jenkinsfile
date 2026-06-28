@@ -93,6 +93,26 @@ pipeline {
 	    }
 	}
 
+	stage('Commit Helm Updates') {
+	    steps {
+		withCredentials([usernamePassword(
+		    credentialsId: 'github-creds',
+		    usernameVariable: 'GIT_USER',
+		    passwordVariable: 'GIT_PAT'
+		)]) {
+		    sh '''
+		    git config user.name "Jenkins"
+		    git config user.email "jenkins@local"
+
+		    git add helm/backend/values.yaml helm/frontend/values.yaml
+		    git diff --cached --quiet || git commit -m "ci: update image tags to ${BUILD_NUMBER}"
+
+		    git push https://${GIT_USER}:${GIT_PAT}@github.com/ravindranathsingh/ultimate-devops-platform.git HEAD:main
+		    '''
+		}
+	    }
+	}
+
     }
 
     post {
