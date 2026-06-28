@@ -1,9 +1,9 @@
 replicaCount: 1
 
 image:
-  repository: frontend
-  tag: v2
-  pullPolicy: Never
+  repository: ghcr.io/ravindranathsingh/frontend
+  tag: v1
+  pullPolicy: Always
 
 service:
   type: ClusterIP

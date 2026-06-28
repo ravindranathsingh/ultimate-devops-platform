@@ -1,9 +1,9 @@
 replicaCount: 1
 
 image:
-  repository: backend
+  repository: ghcr.io/ravindranathsingh/backend
   tag: v1
-  pullPolicy: Never
+  pullPolicy: Always
 
 service:
   type: ClusterIP
