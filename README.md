@@ -737,4 +737,26 @@ Current Toolset:
 Purpose:
 Provide a standardized Jenkins runtime for all CI pipelines.
 
+## Jenkins Runtime Distribution
+
+Registry:
+GitHub Container Registry (GHCR)
+
+Image:
+jenkins-devops:v1
+
+Purpose:
+Provide a reusable Jenkins runtime image for Kubernetes deployments and future Jenkins upgrades.
+
+## Jenkins Custom Runtime
+
+Deployment:
+Helm Upgrade
+
+Runtime Image:
+ghcr.io/<your-github-username>/jenkins-devops:v1
+
+Purpose:
+Run Jenkins with a prebuilt DevOps toolchain instead of the default Jenkins image.
+
 

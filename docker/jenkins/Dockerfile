@@ -8,6 +8,7 @@ RUN apt-get update && \
         wget \
         unzip \
         git \
+        gnupg \
         docker.io
 
 # Install Helm

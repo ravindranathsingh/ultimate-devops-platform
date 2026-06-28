@@ -1,0 +1,14 @@
+controller:
+  imagePullSecretName: ghcr-secret
+  image:
+    registry: ghcr.io
+    repository: ravindranathsingh/jenkins-devops
+    tag: v1
+
+  imagePullPolicy: Always
+
+  installPlugins: []
+
+  admin:
+    username: admin
+    password: admin123
