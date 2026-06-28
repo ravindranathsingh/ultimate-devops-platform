@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: frontend
+  namespace: argocd
+
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/ravindranathsingh/ultimate-devops-platform.git
+    targetRevision: main
+    path: helm/frontend
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: devops-app
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+    syncOptions:
+      - CreateNamespace=true
