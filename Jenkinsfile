@@ -61,8 +61,8 @@ pipeline {
         }
 
 	stage('Push Images to GHCR') {
-    	    steps {
-        	withCredentials([usernamePassword(
+	    steps {
+		with Credentials([usernamePassword(
                     credentialsId: 'ghcr-creds',
                     usernameVariable: 'GH_USER',
                     passwordVariable: 'GH_PAT'
@@ -70,13 +70,27 @@ pipeline {
                     sh '''
                     echo "$GH_PAT" | docker login ghcr.io -u "$GH_USER" --password-stdin
 
-            	    docker push ghcr.io/ravindranathsingh/backend:v1
-            	    docker push ghcr.io/ravindranathsingh/frontend:v1
+		    docker push ghcr.io/ravindranathsingh/backend:v1
+		    docker push ghcr.io/ravindranathsingh/frontend:v1
 
 	            docker logout ghcr.io
-        	    '''
-        	}
-    	    }
+		    '''
+		}
+	    }
+	}
+
+	stage('Update Helm Image Tags') {
+	    steps {
+		sh '''
+		sed -i "s/tag:.*/tag: ${BUILD_NUMBER}/" helm/backend/values.yaml
+		sed -i "s/tag:.*/tag: ${BUILD_NUMBER}/" helm/frontend/values.yaml
+
+		echo "Updated image tags to ${BUILD_NUMBER}"
+
+		grep tag helm/backend/values.yaml
+		grep tag helm/frontend/values.yaml
+		'''
+	    }
 	}
 
     }
