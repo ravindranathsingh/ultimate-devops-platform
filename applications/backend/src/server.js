@@ -16,6 +16,13 @@ app.get('/version', (req, res) => {
   });
 });
 
+app.get('/version', (req, res) => {
+    res.json({
+        version: "v2",
+        build: "GitOps Validation"
+    });
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, '0.0.0.0', () => {

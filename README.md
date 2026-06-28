@@ -816,3 +816,22 @@ Deploys updated application to Kubernetes
 - GitHub Actions (if added later)
 - GitHub Container Registry (GHCR)
 - GitOps
+
+## Configure Argo CD Auto Sync
+
+### Completed
+
+- Created separate Argo CD Applications for backend and frontend
+- Enabled automated sync
+- Enabled self-healing
+- Enabled automatic pruning
+- Verified both applications reached Synced and Healthy state
+
+### Verification
+
+```bash
+kubectl get applications -n argocd
+NAME       SYNC STATUS   HEALTH STATUS
+backend    Synced        Healthy
+frontend   Synced        Healthy
+```
