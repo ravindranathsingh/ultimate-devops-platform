@@ -11,12 +11,6 @@ app.get('/health', (req, res) => {
 });
 
 app.get('/version', (req, res) => {
-  res.status(200).json({
-    version: '1.0.0'
-  });
-});
-
-app.get('/version', (req, res) => {
     res.json({
         version: "v2",
         build: "GitOps Validation"
