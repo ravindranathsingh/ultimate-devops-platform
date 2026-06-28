@@ -40,6 +40,26 @@ pipeline {
             }
         }
 
+	stage('Build Backend Image') {
+	    steps {
+                sh '''
+		docker build \
+		  -t ghcr.io/ravindranathsingh/backend:v1 \
+		  ./applications/backend
+		'''
+	    }
+	}
+
+	stage('Build Frontend Image') {
+            steps {
+                sh '''
+                docker build \
+                  -t ghcr.io/ravindranathsingh/frontend:v1 \
+                  ./applications/frontend
+                '''
+	    }
+        }
+
     }
 
     post {
