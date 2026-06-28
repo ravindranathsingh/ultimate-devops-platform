@@ -759,4 +759,60 @@ ghcr.io/<your-github-username>/jenkins-devops:v1
 Purpose:
 Run Jenkins with a prebuilt DevOps toolchain instead of the default Jenkins image.
 
+## Milestone 5: CI/CD Automation
 
+### Jenkins Pipeline
+
+The Jenkins pipeline now performs the following stages:
+
+- Checkout source code
+- Verify project structure
+- Validate Backend Helm chart
+- Validate Frontend Helm chart
+- Build Backend Docker image
+- Build Frontend Docker image
+- Push Docker images to GitHub Container Registry (GHCR)
+- Update Helm image tags automatically
+- Commit updated Helm values back to GitHub
+
+### Docker Images
+
+Images are built automatically by Jenkins and published to GHCR.
+
+Example:
+
+ghcr.io/ravindranathsingh/backend:<BUILD_NUMBER>
+
+ghcr.io/ravindranathsingh/frontend:<BUILD_NUMBER>
+
+### GitOps Workflow
+```text
+Developer Push
+↓
+GitHub
+↓
+Jenkins Pipeline
+↓
+Build Docker Images
+↓
+Push Images to GHCR
+↓
+Update Helm values.yaml
+↓
+Commit Changes
+↓
+Argo CD detects Git changes
+↓
+Deploys updated application to Kubernetes
+```
+### Technologies Used
+
+- Docker
+- Kubernetes
+- Helm
+- Jenkins
+- Argo CD
+- SonarQube
+- GitHub Actions (if added later)
+- GitHub Container Registry (GHCR)
+- GitOps
