@@ -1,12 +1,9 @@
 pipeline {
 
     agent {
-        label 'built-in'
-    }
-
-    environment {
-        IMAGE_TAG = "${BUILD_NUMBER}"
-        GHCR_REPO = "ghcr.io/ravindranathsingh"
+        node {
+            label 'jenkins-agent'
+        }
     }
 
     stages {
@@ -19,107 +16,117 @@ pipeline {
 
         stage('Verify Repository') {
             steps {
-                sh '''
-                test -d applications
-                test -d helm
-                test -d kubernetes
-                '''
+                container('build-tools') {
+                    sh '''
+                    test -d applications
+                    test -d helm
+                    test -d kubernetes
+                    '''
+                }
             }
         }
 
         stage('Validate Backend Helm') {
             steps {
-                sh '''
-                helm lint helm/backend
-                helm template backend helm/backend > /dev/null
-                '''
+                container('build-tools') {
+                    sh '''
+                    helm lint helm/backend
+                    helm template backend helm/backend > /dev/null
+                    '''
+                }
             }
         }
 
         stage('Validate Frontend Helm') {
             steps {
-                sh '''
-                helm lint helm/frontend
-                helm template frontend helm/frontend > /dev/null
-                '''
+                container('build-tools') {
+                    sh '''
+                    helm lint helm/frontend
+                    helm template frontend helm/frontend > /dev/null
+                    '''
+                }
             }
         }
 
         stage('Build Backend Image') {
             steps {
-                sh '''
-                docker build \
-                  -t ${GHCR_REPO}/backend:${IMAGE_TAG} \
-                  ./applications/backend
-                '''
+                container('build-tools') {
+                    sh '''
+                    docker build \
+                      -t ghcr.io/ravindranathsingh/backend:v1 \
+                      ./applications/backend
+                    '''
+                }
             }
         }
 
         stage('Build Frontend Image') {
             steps {
-                sh '''
-                docker build \
-                  -t ${GHCR_REPO}/frontend:${IMAGE_TAG} \
-                  ./applications/frontend
-                '''
+                container('build-tools') {
+                    sh '''
+                    docker build \
+                      -t ghcr.io/ravindranathsingh/frontend:v1 \
+                      ./applications/frontend
+                    '''
+                }
             }
         }
 
         stage('Push Images to GHCR') {
             steps {
-                withCredentials([usernamePassword(
-                    credentialsId: 'ghcr-creds',
-                    usernameVariable: 'GH_USER',
-                    passwordVariable: 'GH_PAT'
-                )]) {
-                    sh '''
-                    echo "$GH_PAT" | docker login ghcr.io -u "$GH_USER" --password-stdin
+                container('build-tools') {
+                    withCredentials([usernamePassword(
+                        credentialsId: 'ghcr-creds',
+                        usernameVariable: 'GH_USER',
+                        passwordVariable: 'GH_PAT'
+                    )]) {
+                        sh '''
+                        echo "$GH_PAT" | docker login ghcr.io -u "$GH_USER" --password-stdin
 
-                    docker push ${GHCR_REPO}/backend:${IMAGE_TAG}
-                    docker push ${GHCR_REPO}/frontend:${IMAGE_TAG}
+                        docker push ghcr.io/ravindranathsingh/backend:v1
+                        docker push ghcr.io/ravindranathsingh/frontend:v1
 
-                    docker logout ghcr.io
-                    '''
+                        docker logout ghcr.io
+                        '''
+                    }
                 }
             }
         }
 
         stage('Update Helm Image Tags') {
             steps {
-                sh '''
-                sed -i "s|tag:.*|tag: ${IMAGE_TAG}|" helm/backend/values.yaml
-                sed -i "s|tag:.*|tag: ${IMAGE_TAG}|" helm/frontend/values.yaml
+                container('build-tools') {
+                    sh '''
+                    sed -i "s/tag:.*/tag: ${BUILD_NUMBER}/" helm/backend/values.yaml
+                    sed -i "s/tag:.*/tag: ${BUILD_NUMBER}/" helm/frontend/values.yaml
 
-                echo "===== Backend values ====="
-                grep -A2 image helm/backend/values.yaml
+                    echo "Updated image tags to ${BUILD_NUMBER}"
 
-                echo "===== Frontend values ====="
-                grep -A2 image helm/frontend/values.yaml
-                '''
+                    grep tag helm/backend/values.yaml
+                    grep tag helm/frontend/values.yaml
+                    '''
+                }
             }
         }
 
         stage('Commit Helm Updates') {
             steps {
-                withCredentials([usernamePassword(
-                    credentialsId: 'github-creds',
-                    usernameVariable: 'GIT_USER',
-                    passwordVariable: 'GIT_PAT'
-                )]) {
-                    sh '''
-                    git config user.name "Jenkins"
-                    git config user.email "jenkins@local"
+                container('build-tools') {
+                    withCredentials([usernamePassword(
+                        credentialsId: 'github-creds',
+                        usernameVariable: 'GIT_USER',
+                        passwordVariable: 'GIT_PAT'
+                    )]) {
+                        sh '''
+                        git config user.name "Jenkins"
+                        git config user.email "jenkins@local"
 
-                    git add helm/backend/values.yaml
-                    git add helm/frontend/values.yaml
+                        git add helm/backend/values.yaml helm/frontend/values.yaml
+                        git diff --cached --quiet || git commit -m "ci: update image tags to ${BUILD_NUMBER}"
 
-                    if ! git diff --cached --quiet; then
-                        git commit -m "ci: update image tags to ${IMAGE_TAG}"
-                        git push https://${GIT_USER}:${GIT_PAT}@github.com/ravindranathsingh/ultimate-devops-platform.git HEAD:main
-                    else
-                        echo "No Helm changes to commit."
-                    fi
-                    '''
+                        git push https://${GIT_USER}:${GIT_PAT}@://github.com HEAD:main
+                        '''
+                    }
                 }
             }
         }
@@ -127,19 +134,8 @@ pipeline {
     }
 
     post {
-
-        always {
-            echo 'Pipeline Finished'
-        }
-
-        success {
-            echo "Pipeline Successful - Image Tag: ${IMAGE_TAG}"
-        }
-
-        failure {
-            echo 'Pipeline Failed'
-        }
-
+        always { echo 'Pipeline Finished' }
+        success { echo 'Pipeline Successful' }
+        failure { echo 'Pipeline Failed' }
     }
-
 }

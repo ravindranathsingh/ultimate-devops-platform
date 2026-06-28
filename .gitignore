@@ -1,3 +1,39 @@
-# Vagrant
-.vagrant
-*.box
+# Archives
+*.tar
+*.tar.gz
+*.zip
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Terraform
+.terraform/
+*.tfstate*
+
+# Python
+__pycache__/
+
+# Node
+node_modules/
+
+# Helm
+*.tgz
+
+# Kubernetes
+kubeconfig
+
+# Temporary
+tmp/
+*.tmp
