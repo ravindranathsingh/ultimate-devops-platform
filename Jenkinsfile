@@ -60,6 +60,25 @@ pipeline {
 	    }
         }
 
+	stage('Push Images to GHCR') {
+    	    steps {
+        	withCredentials([usernamePassword(
+                    credentialsId: 'ghcr-creds',
+                    usernameVariable: 'GH_USER',
+                    passwordVariable: 'GH_PAT'
+                )]) {
+                    sh '''
+                    echo "$GH_PAT" | docker login ghcr.io -u "$GH_USER" --password-stdin
+
+            	    docker push ghcr.io/ravindranathsingh/backend:v1
+            	    docker push ghcr.io/ravindranathsingh/frontend:v1
+
+	            docker logout ghcr.io
+        	    '''
+        	}
+    	    }
+	}
+
     }
 
     post {
